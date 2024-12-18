@@ -12,7 +12,7 @@ function convertCurrency() {
         return;
       }
       const result = (amount / rate).toFixed(2);
-      document.getElementById("result").innerText = `${amount} RUB = ${result.toFixed(2)} USD`;
+      document.getElementById("result").innerText = `${amount} рублей = ${result} USD`;
     })
     .catch(error => {
       console.error('Error:', error);
