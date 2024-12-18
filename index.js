@@ -1,12 +1,22 @@
 function convertCurrency() {
-    const amount = parseFloat(document.getElementById("amount").value);
-    const rate = parseFloat(document.getElementById("rate").value);
+  const amount = parseFloat(document.getElementById("amount").value);
 
-    if (isNaN(amount) || isNaN(rate)) {
+  // Получаем курс обмена из API
+  fetch('https://api.exchangerate-api.com/v4/latest/USD')
+    .then(response => response.json())
+    .then(data => {
+      const rate = data.rates.RUB; // Получаем курс обмена из данных API
+
+      if (isNaN(amount)) {
         document.getElementById("result").innerText = "Пожалуйста, введите правильные значения.";
         return;
-    }
+      }
 
-    const result = (amount / rate).toFixed(2);
-    document.getElementById("result").innerText = `${amount} RUB = ${result} USD`;
+      const result = (amount / rate).toFixed(2);
+      document.getElementById("result").innerText = `amountRUB = ${result} USD`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById("result").innerText = "Ошибка при получении курса обмена. Пожалуйста, попробуйте позже.";
+    });
 }
