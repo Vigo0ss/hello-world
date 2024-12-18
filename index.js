@@ -11,9 +11,8 @@ function convertCurrency() {
         document.getElementById("result").innerText = "Пожалуйста, введите правильные значения.";
         return;
       }
-
       const result = (amount / rate).toFixed(2);
-      document.getElementById("result").innerText = `amountRUB = ${result} USD`;
+      document.getElementById("result").innerText = `${amount} RUB = ${result.toFixed(2)} USD`;
     })
     .catch(error => {
       console.error('Error:', error);
